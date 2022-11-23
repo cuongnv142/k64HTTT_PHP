@@ -31,8 +31,10 @@
     // 2 hàm để sử dụng: 1 là dành cho select, 1 là dành cho iud
 
     public function queryIud ($sql) {
+        
+        
         $query = $this->connection->prepare($sql);
-        $result = $query->excute();
+        $result = $query->execute();
         if($result) {
             // Lấy ra id cuối cùng vừa thực hiện
             return $this->connection->lastInsertId();
@@ -40,12 +42,11 @@
         } else {
             return false;
         }
-        
     }
 
     public function querySelect($sql) {
         $query = $this->connection->prepare($sql);
-        $query->excute();
+        $query->execute();
         $result = $query->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }

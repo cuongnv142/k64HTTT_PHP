@@ -1,6 +1,6 @@
 <?php
 // Trang dùng để tạo mới một user
-
+include '../controller/userController.php';
 if(isset($_POST["username"]) && isset($_POST["password"])) {
     $a = $_POST["username"];
     $b = $_POST["password"];
@@ -8,9 +8,12 @@ if(isset($_POST["username"]) && isset($_POST["password"])) {
     
     if($b === $c) {
         // Todo thực hiện các bước phía sau
-        // Chạy các phương thức trong usercontroller
-        echo "Tạo tài khoản thành công </br>";
-    
+        // Khởi tạo thể hiện của user
+        $user = new usercontroller($a,$b);
+        $result = $user->createuser();
+        if ($result > 0) {
+            echo "Tạo tài khoản thành công </br>";
+        }
     } else {
         echo "Mật khẩu không trùng khớp </br>";
     }
