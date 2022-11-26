@@ -92,6 +92,24 @@ class usercontroller {
         return md5($this->password);
      }
 
+     // Viết thêm 1 hàm check login
+     public function isLogin() {
+        if($this->getSession("userid")) {
+            return true;
+        } else {
+            return false;
+        }
+     }
+
+     // Viết thêm 1 hàm getSession để get các session đang tồn tại
+     // Truyền vào name : name này là name của session
+     public function getSession($name) {
+        if($name !== null) {
+            return isset($_SESSION[$name]) ? $_SESSION[$name] : null;
+        }
+        return $_SESSION;
+     }
+
 
 
 }

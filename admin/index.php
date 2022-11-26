@@ -1,2 +1,6 @@
 <?php
-echo "Đây là trang index sau khi login thành công";
+session_start();
+include '../config/router.php';
+$router = new Router(__DIR__);
+$router->router();
+
