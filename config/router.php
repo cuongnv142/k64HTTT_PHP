@@ -55,7 +55,6 @@ class Router {
         } else {
             return $this->PageNoteFound();
         }
-
     }
     public function PageNoteFound () {
         echo "PAGE NOT FOUND";
@@ -68,10 +67,22 @@ class Router {
         $this->redirect(self::HOME_PAGE);
     }
 
+    // Viết thêm 1 hàm redirect đến Loginpage
+    public function redirectLoginPage() {
+        $this->redirect("login");
+    }
+
+    // Mục tiêu của hàm này là tạo ra url
+    // nếu mà là url nó có các param đằng sau thì cần bóc các param đấy ra
+
+    public function createUrl($url,$param=[]) {
+        if($url) {
+            $param[self::PARAM_NAME] = $url;
+        }
+        return $_SERVER['PHP_SELF'].'?'.http_build_query($param);
+    }
+
     public function redirect($url) {
         header("Location:?r=$url");
     }
-
-
-
 }

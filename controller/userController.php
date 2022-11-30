@@ -111,5 +111,42 @@ class usercontroller {
      }
 
 
+     // Viết hàm list ra toàn bộ user đang có
+     public function listuser() {
+        $login = new connectdb();
+        $sql = "SELECT id, username, created_time from users";
+        // Check xem tồn tại connection hay chưa?
+        if(isset($this->connection)) {
+
+        } else {
+            $login->connect();
+        }
+        
+        $result = $login->querySelect($sql);
+        if(count($result) > 0) {
+            return $result;
+        } else {
+            return false;
+        }
+     }
+
+     // Viết thêm 1 hàm view detail user
+     public function viewdetail($id) {
+        $login = new connectdb();
+        $sql = "SELECT id, username, created_time from users where id = '$id'" ;
+        // Check xem tồn tại connection hay chưa?
+        if(isset($this->connection)) {
+
+        } else {
+            $login->connect();
+        }
+        
+        $result = $login->querySelect($sql);
+        if(count($result) > 0) {
+            return $result;
+        } else {
+            return false;
+        }
+     }
 
 }
